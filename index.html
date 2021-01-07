@@ -1,0 +1,100 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>     
+    </head>
+    <body>
+        <!-- Model templates -->
+        <div class="models">
+            <div class="card">
+                <div class="card--img">
+                    <img src="" alt="card image"/>
+                </div>
+                <div class="card--tooltip"></div>
+            </div>    
+        </div>
+        <!-- Model templates END-->
+        <header>
+            <div class="container header-area">
+                <div class="logo">
+                    <a href=""><img src="assets/img/logo.png" alt="logo" /></a>
+                </div>
+                <h1>Search for a Yugi-oh card</h1>
+            </div>
+        </header>
+
+        <!--Seach field area -->
+        <div class="container">
+            
+            <div class="search-area">
+                <div class="search--field">
+                    <input id="name" type="search" placeholder="Search by name"/> 
+                </div>
+                <div class="search--field">
+                    <label for="level">Level</label> <br/>
+                    <select  id="level">
+                            <option>Unset</option>
+                    </select>
+                </div>
+                <div class="search--field">
+                    <label for="race">Race</label> <br/>
+                    <select id="race">
+                            <option>Unset</option>
+                    </select>
+                </div> 
+                <div class="search--field">
+                    <label for="type">Type</label> <br/>
+                    <select id="type">
+                            <option>Unset</option>         
+                    </select>
+                </div>
+
+                <div class="search--field">
+                    <label for="attribute">Attribute</label> <br/>
+                    <select  id="attribute">
+                            <option>Unset</option>
+                    </select>
+                </div>
+
+                <div class="buttons-area">
+                    <button id="search" class="btn btn--purple">Search</button>
+                    <button id="reset" class="btn btn--purple">Reset</button>
+                </div>
+            </div>
+            <!--Seach field area END-->
+
+            <!--Area to display the restults -->
+            <div class="results"></div>
+            <!--Area to display the restults END-->
+
+            <div class="loading">
+                <img src="assets/img/loading.gif" alt="loading"/>
+            </div>
+            
+            <!--Panel buttons -->
+            <div class="panel">
+
+                <button id="loadmore" class="btn btn--purple">Load more</button>
+            </div>
+            <!--Panel buttons END -->
+        </div>
+
+        <!--Modal Template-->
+        <div class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal--img-area">
+                        <img src="" alt="card image" />
+                    </div>
+                    <div class="modal--features-area"></div>
+                </div>
+            </div>
+        </div>
+        <!--Modal END -->
+
+        <script src="assets/js/options.js"></script>
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>
