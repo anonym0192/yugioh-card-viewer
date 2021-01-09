@@ -305,14 +305,14 @@ header{
         justify-content: flex-start;
     }
     .modal-dialog{   
-        width: 90vw;
+        width: 100vw;
     }
     .modal--features-area h4{
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .modal--features-area span{
-        font-size: 17px;
+        font-size: 12px;
     }
 }
 

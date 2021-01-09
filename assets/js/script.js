@@ -46,7 +46,8 @@ async function makeRequest(e){
             //Render the result
             loadItensResult();  
 
-            NEXT_PAGE_OFFSET = json.meta.next_page_offset;          
+            NEXT_PAGE_OFFSET = json.meta.next_page_offset;
+          
         } 
 
 }
@@ -95,38 +96,27 @@ function loadItensResult(){
         const card = s('.models .card').cloneNode(true);
         card.setAttribute('data-key', key );
         card.querySelector('img').src = item.card_images[0].image_url_small;
-           
-        const properties = {...CARD_PROPERTIES};
-
-        properties.name += item.name;
-        properties.level += item.level;
-        properties.type += item.type;
-        properties.race += item.race;
-        properties.attribute += item.attribute;
-        properties.archetype += item.archetype;
-        properties.atk += item.atk;
-        properties.def += item.def;
-        properties.desc += item.desc;
-
-
+        
+        //Build a object with all card data that will be shown
+        
         const tooltip = card.querySelector('.card--tooltip');
 
-        /*Show only properties that are defined*/
-        for(let i in properties){
-            if(properties[i].indexOf("undefined") == -1){    
-                tooltip.innerHTML += `<span>${properties[i]}</span>`;
+        /* Fill the tooltip with the names and values of card properties */
+        for(let prop in CARD_PROPERTIES_NAMES){
+            if(item[prop]){
+                tooltip.innerHTML += `<span>${CARD_PROPERTIES_NAMES[prop]} ${item[prop]}</span>`;
             }
-        }
+         }
         
         card.addEventListener('click',(e)=>{
             
-            //Clean the modal and Opens it
+            //Clean the modal
             resetModalItems();
-            openModal();
-
+            
             //Render the properties for the selected card inside the modal
-            console.log(key);
             changeModalCard(key);
+
+            openModal();
         });
 
         s('.results').append(card);
@@ -160,11 +150,12 @@ function closeModal(){
     modal.style.opacity = 0.4;
     setTimeout(()=>{
         modal.style.display = 'none';
+        resetModalItems();
     }, 400);
 }
 
 
-/*Load a card in modal modal */
+/*Load a card in modal*/
 function changeModalCard(key){
   
     const item = completeList[key];
@@ -173,22 +164,12 @@ function changeModalCard(key){
         return;
     }
 
-    const properties = {...CARD_PROPERTIES};
-
-    properties.level += item.level;
-    properties.type += item.type;
-    properties.race += item.race;
-    properties.attribute += item.attribute;
-    properties.archetype += item.archetype;
-    properties.atk += item.atk;
-    properties.def += item.def;
-    properties.desc += item.desc;
 
     resetModalItems();
 
     const modal = s('.modal');
 
-    modal.setAttribute('card', key);
+    modal.setAttribute('data-card', key);
 
     setTimeout(()=>{
         modal.querySelector('img').src = item.card_images[0].image_url;
@@ -197,19 +178,23 @@ function changeModalCard(key){
     const featuresArea = modal.querySelector('.modal--features-area');
 
     featuresArea.innerHTML += `<h4>${item.name}</h4>`;
-    
-    for(let i in properties){
-        if(properties[i].indexOf("undefined") == -1 ){    
-            featuresArea.innerHTML += `<span>${properties[i]}</span>`;
-        }
-    } 
 
+    /*Render the card properties inside the modal */
+    for(let prop in CARD_PROPERTIES_NAMES){
+
+        if(item[prop] && prop !== 'name'){
+            featuresArea.innerHTML += `<span>${CARD_PROPERTIES_NAMES[prop]} ${item[prop]}</span>`;
+        }
+        
+    }
+  
 }
 
 /*Reset the data elements inside the modal  */
 function resetModalItems(){
      s('.modal img').src = 'assets/img/placeholder_image.png';
      s('.modal .modal--features-area').innerHTML = "";
+     s('.modal').setAttribute('data-card', '');
 }
 
 
@@ -275,13 +260,13 @@ window.onload = function(){
             }
 
             if(e.keyCode === 37 && isModalOpen){
-                const currentCard = parseInt(modal.getAttribute('card'));
+                const currentCard = parseInt(modal.getAttribute('data-card'));
                 changeModalCard(currentCard - 1);
                 return;
             }
 
             if(e.keyCode === 39 && isModalOpen){
-                const currentCard = parseInt(modal.getAttribute('card'));
+                const currentCard = parseInt(modal.getAttribute('data-card'));
                 changeModalCard(currentCard + 1);
                 return;
             }

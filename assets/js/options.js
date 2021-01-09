@@ -1,6 +1,6 @@
 const API_BASENAME = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
-let CARD_PROPERTIES = {
+const CARD_PROPERTIES_NAMES = {
  	name: "<strong>Name: </strong>",
  	level: "<strong>LV: </strong>",
  	type: "<strong>Type: </strong>",
