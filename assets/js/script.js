@@ -274,5 +274,62 @@ window.onload = function(){
 
     });
 
+
     document.getElementById('name').focus();
+
+
+    // Swipe Left / Right events
+
+    s('.modal').addEventListener("touchstart", startTouch, false);
+    s('.modal').addEventListener("touchmove", moveTouch, false);
+ 
+
+    var initialX = null;
+    var initialY = null;
+     
+    function startTouch(e) {
+      initialX = e.touches[0].clientX;
+      initialY = e.touches[0].clientY;
+    };
+     
+    function moveTouch(e) {
+
+      e.preventDefault();
+
+      if (initialX === null) {
+        return;
+      }
+     
+      if (initialY === null) {
+        return;
+      }
+     
+      var currentX = e.touches[0].clientX;
+      var currentY = e.touches[0].clientY;
+     
+      var diffX = initialX - currentX;
+      var diffY = initialY - currentY;
+
+      
+     
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+
+        const modal = s('.modal');
+        // sliding horizontally
+        if (diffX > 0) {
+          // swiped left
+          const currentCard = parseInt(modal.getAttribute('data-card'));
+          changeModalCard(currentCard + 1);
+        } else {
+          // swiped right
+          const currentCard = parseInt(modal.getAttribute('data-card'));
+          changeModalCard(currentCard - 1);
+
+        }  
+      }   
+        
+      initialX = null;
+      initialY = null;
+       
+    };
 }
