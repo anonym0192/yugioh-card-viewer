@@ -294,8 +294,6 @@ window.onload = function(){
      
     function moveTouch(e) {
 
-      e.preventDefault();
-
       if (initialX === null) {
         return;
       }

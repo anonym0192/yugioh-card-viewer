@@ -61,6 +61,8 @@ header{
 *Form area
 *
 */
+
+
 .search-area{
 	padding: 50px 10px;
     margin: auto;
@@ -82,6 +84,8 @@ header{
     border: 1px solid #eeefef;
     background-color: #232323;
     color: #fff;
+    width: 100%;
+    max-width: 295px; 
 }
 
 .buttons-area{
@@ -299,7 +303,7 @@ header{
 * Tablet screensize
 *
 */
-@media only screen and (min-width: 426px) and (max-width: 768px){
+@media only screen and (min-width: 426px) and (max-width: 1024px){
 
     .modal{
         justify-content: flex-start;
@@ -314,6 +318,7 @@ header{
     .modal--features-area span{
         font-size: 12px;
     }
+
 }
 
 /*
@@ -327,10 +332,6 @@ header{
         font-size: 25px;
     }
 
-    .search--field input,
-    .search--field select{
-        width: 100%;
-    }
     .modal{
         justify-content: flex-start;
         align-items: flex-start;
@@ -361,7 +362,11 @@ header{
 
     .modal--features-area span{
         font-size: 17px;
-    }    
+    }
+
+    .results{
+        overflow-x: hidden;
+    }
 }
 
 
