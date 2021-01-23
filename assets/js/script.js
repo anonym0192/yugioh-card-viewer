@@ -135,6 +135,7 @@ function loadItensResult(){
 function openModal(){
 
     document.body.style.overflow = 'hidden';
+    s('.results').style.overflow = 'hidden';
     const modal = document.querySelector('.modal');
     modal.style.display = 'flex';
     setTimeout(()=>{
@@ -146,6 +147,7 @@ function openModal(){
 function closeModal(){
 
     document.body.style.overflow = 'auto';
+    s('.results').style.overflow = 'unset';
     const modal = document.querySelector('.modal');
     modal.style.opacity = 0.4;
     setTimeout(()=>{
@@ -239,7 +241,7 @@ window.onload = function(){
     /* Form and Buttons events */
     s('#search').addEventListener('click', makeRequest);
     s('.search-area').addEventListener('keyup',(e)=>{
-        if(e.keyCode === 13){
+        if(e.keyCode === 13 || e.keyCode === 229){
             makeRequest(e);
         }
     });
