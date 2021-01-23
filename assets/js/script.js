@@ -239,7 +239,10 @@ window.onload = function(){
     
 
     /* Form and Buttons events */
-    s('#search').addEventListener('click', makeRequest);
+    s('#search').addEventListener('click', (e)=>{
+        e.preventDefault();
+        makeRequest(e)
+    });
     s('.search-area').addEventListener('keyup',(e)=>{
         if(e.keyCode === 13 || e.keyCode === 229){
             makeRequest(e);
