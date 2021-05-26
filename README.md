@@ -4,4 +4,11 @@ A simple page that consumes the ygoprodeck API using Vanilla Script. It allows y
 
 # Features
 
-You are able to search for a Yugi-oh Cards by name and by the desired attributes and visualize them in a modal when they are clicked. Pass each one using the Arrow left and right from the keyboard. 
+You are able to search for a Yugi-oh Cards by name and by the desired attributes and visualize them in a modal when they are clicked. Skip through the cards in modal using the Arrow left and right from the keyboard. 
+
+# API used
+
+Ygoprodeck API 
+
+https://db.ygoprodeck.com/api/v7/cardinfo.php
+
